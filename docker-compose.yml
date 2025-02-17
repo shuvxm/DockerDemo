@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+#    networks:
+#      - s-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER : shubham
+      POSTGRES_PASSWORD : 1234
+      POSTGRES_DB : ideaMode
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres-s-data:/var/lib/postgresql/data
+#    networks:
+#      - s-network
+
+#networks:
+#  s-network:
+#    driver: bridge
+
+# to store new data if we restart the container without volume we will lose new added data.
+volumes:
+  postgres-s-data:
